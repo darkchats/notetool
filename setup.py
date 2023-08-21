@@ -4,7 +4,7 @@ from setuptools import find_packages, setup
 
 install_requires = ['cryptography', 'notebuild']
 
-setup(name='fun-tools',
+setup(name='farfuntool',
       version=time.strftime("%Y%m%d%H%M", time.localtime()),
       description='funtool',
       author='niuliangtao',
