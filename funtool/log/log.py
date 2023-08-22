@@ -31,10 +31,10 @@ class LogTool:
 
         self.record_msg = ""
         self.record_time = time.time()
-        self.record_level = 'none'
+        self.record_level = "none"
 
     def start(self):
-        self._reset_time("start", level='none')
+        self._reset_time("start", level="none")
 
     def _reset_time(self, msg, level):
         self.record_msg = msg
@@ -43,15 +43,15 @@ class LogTool:
 
     def _log_run(self, level, msg, run_time=None, *args, **kwargs):
         if run_time is not None:
-            msg = '{}, cost time {}.'.format(msg, get_lapse_time(run_time))
+            msg = "{}, cost time {}.".format(msg, get_lapse_time(run_time))
 
-        if level == 'debug':
+        if level == "debug":
             self.logger.debug(msg, *args, **kwargs)
-        if level == 'info':
+        if level == "info":
             self.logger.info(msg, *args, **kwargs)
-        if level in ('warning', 'warn'):
+        if level in ("warning", "warn"):
             self.logger.warning(msg, *args, **kwargs)
-        if level == 'error':
+        if level == "error":
             self.logger.error(msg, *args, **kwargs)
 
     def run(self, level, msg, record=False, before=False, *args, **kwargs):
@@ -62,8 +62,7 @@ class LogTool:
 
         elif record:
             run_time = time.time() - self.record_time
-            self._log_run(self.record_level, self.record_msg,
-                          run_time, *args, **kwargs)
+            self._log_run(self.record_level, self.record_msg, run_time, *args, **kwargs)
             self._reset_time(msg, level)
             self._log_run(level, msg, *args, **kwargs)
 
@@ -71,19 +70,19 @@ class LogTool:
             self._log_run(level, msg, *args, **kwargs)
 
     def debug(self, msg, record=True, before=False, *args, **kwargs):
-        self.run('debug', msg, record=record, before=before, *args, **kwargs)
+        self.run("debug", msg, record=record, before=before, *args, **kwargs)
 
     def info(self, msg, record=True, before=False, *args, **kwargs):
-        self.run('info', msg, record=record, before=before, *args, **kwargs)
+        self.run("info", msg, record=record, before=before, *args, **kwargs)
 
     def warn(self, msg, record=True, before=False, *args, **kwargs):
-        self.run('warn', msg, record=record, before=before, *args, **kwargs)
+        self.run("warn", msg, record=record, before=before, *args, **kwargs)
 
     def warning(self, msg, record=True, before=False, *args, **kwargs):
-        self.run('warning', msg, record=record, before=before, *args, **kwargs)
+        self.run("warning", msg, record=record, before=before, *args, **kwargs)
 
     def error(self, msg, record=True, before=False, *args, **kwargs):
-        self.run('error', msg, record=record, before=before, *args, **kwargs)
+        self.run("error", msg, record=record, before=before, *args, **kwargs)
 
     def setLevel(self, level):
         self.logger.setLevel(level)
@@ -99,5 +98,5 @@ def load_log(name=None) -> logging.Logger:
     return _log
 
 
-logger = logging.getLogger("")
+logger = logging.getLogger("farfarfun")
 log_tool = LogTool()
