@@ -130,7 +130,8 @@ class SecretManage(BaseTable):
             self.table.columns.cate4 == cate4,
             self.table.columns.cate5 == cate5,
         )
-        data = [line for line in self.engine.execute(sql)]
+        with self.engine.connect() as conn:
+            data = [line for line in conn.execute(sql)]
         if len(data) > 0:
             value, expire_time = data[0]
             if secret:
